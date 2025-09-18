@@ -6,8 +6,8 @@ Este projeto faz parte da disciplina Laboratório de Desenvolvimento de Software
 
 ## 👤 Integrantes
 
-Fernanda Soares
+Fernanda Soares Oliveira Cunha
 
-Gabriel Reis
+Gabriel Reis Lebron de Oliveira
 
-Olavo Vales
+Olavo Vales Gomes de Castro Silva
