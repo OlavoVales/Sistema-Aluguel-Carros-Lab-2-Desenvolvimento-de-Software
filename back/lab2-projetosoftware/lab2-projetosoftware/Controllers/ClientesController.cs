@@ -15,14 +15,12 @@ namespace lab2_projetosoftware.Controllers
             _context = context;
         }
 
-        // GET: api/clientes
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
         {
             return await _context.Clientes.ToListAsync();
         }
 
-        // GET: api/clientes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Cliente>> GetCliente(int id)
         {
@@ -31,7 +29,6 @@ namespace lab2_projetosoftware.Controllers
             return cliente;
         }
 
-        // POST: api/clientes
         [HttpPost]
         public async Task<ActionResult<Cliente>> CreateCliente(Cliente cliente)
         {
@@ -40,7 +37,6 @@ namespace lab2_projetosoftware.Controllers
             return CreatedAtAction(nameof(GetCliente), new { id = cliente.Id }, cliente);
         }
 
-        // PUT: api/clientes/5
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCliente(int id, Cliente cliente)
         {
@@ -63,7 +59,6 @@ namespace lab2_projetosoftware.Controllers
             return NoContent();
         }
 
-        // DELETE: api/clientes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCliente(int id)
         {
