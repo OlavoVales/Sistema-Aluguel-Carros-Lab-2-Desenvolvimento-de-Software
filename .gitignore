@@ -1,0 +1,40 @@
+## Build results
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+
+## User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Visual Studio
+.vs/
+*.vscode/
+
+## Rider
+.idea/
+
+## NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+## Others
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+## Configurações temporárias
+launchSettings.json
+appsettings.Development.json
+
+## Sistema
+[Dd]ebug/
+[Rr]elease/
+[Tt]emp/
