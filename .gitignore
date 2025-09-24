@@ -4,6 +4,13 @@ obj/
 [Bb]uild/
 [Ll]og/
 
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
 ## User-specific files
 *.suo
 *.user
