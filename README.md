@@ -11,3 +11,13 @@ Fernanda Soares Oliveira Cunha
 Gabriel Reis Lebron de Oliveira
 
 Olavo Vales Gomes de Castro Silva
+
+## 🛠️ Tecnologias Utilizadas ##
+
+**Back-end**: Asp.NET 
+
+**Front-end**: Next.Js
+
+**Design e prototipagem**: Figma
+
+**Controle de versão**: GitHub e Git
