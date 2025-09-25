@@ -18,6 +18,4 @@ Olavo Vales Gomes de Castro Silva
 
 **Front-end**: Next.Js
 
-**Design e prototipagem**: Figma
-
 **Controle de versão**: GitHub e Git
