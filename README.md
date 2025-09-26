@@ -11,3 +11,11 @@ Fernanda Soares Oliveira Cunha
 Gabriel Reis Lebron de Oliveira
 
 Olavo Vales Gomes de Castro Silva
+
+## 🛠️ Tecnologias Utilizadas ##
+
+**Back-end**: Asp.NET 
+
+**Front-end**: Next.Js
+
+**Controle de versão**: GitHub e Git
