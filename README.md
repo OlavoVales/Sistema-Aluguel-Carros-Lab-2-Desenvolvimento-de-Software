@@ -33,7 +33,7 @@ Trata-se de um **Sistema de Aluguel de Carros**, que permite:
 
 - **Backend:** Spring Boot
 - **Frontend:** Next.js  
-- **Banco de Dados:** 
+- **Banco de Dados:** Supabase
 - **Controle de Versão:** Git / GitHub  
 
 
