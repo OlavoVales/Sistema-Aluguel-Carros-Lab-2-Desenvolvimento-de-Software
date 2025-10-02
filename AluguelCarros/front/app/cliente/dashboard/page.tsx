@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -15,25 +16,50 @@ interface Carro {
   placa: string
   valorDiaria: number
   disponivel: boolean
+  imagem: string
 }
 
 export default function ClienteDashboard() {
   const [carros, setCarros] = useState<Carro[]>([])
+  const router = useRouter()
 
   useEffect(() => {
     const fetchCarros = async () => {
+      const token = localStorage.getItem("authToken");
+
+      if (!token) {
+        router.push("/login");
+        return;
+      }
+
       try {
-        const res = await fetch("http://localhost:8080/carros")
-        if (!res.ok) throw new Error("Erro ao buscar carros")
-        const data: Carro[] = await res.json()
-        setCarros(data)
+        const res = await fetch("http://localhost:8080/carros", {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        if (res.status === 403) {
+            localStorage.removeItem("authToken");
+            router.push("/login");
+            return;
+        }
+
+        if (!res.ok) {
+            throw new Error("Erro ao buscar carros");
+        }
+        
+        const data: Carro[] = await res.json();
+        setCarros(data);
+
       } catch (err) {
-        console.error("Erro no fetch:", err)
+        console.error("Erro no fetch:", err);
+        router.push("/login");
       }
     }
 
     fetchCarros()
-  }, [])
+  }, [router])
 
   return (
     <div className="min-h-screen flex flex-col">

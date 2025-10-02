@@ -17,14 +17,50 @@ export default function LoginPage() {
   const [senha, setSenha] = useState("")
   const [tipoUsuario, setTipoUsuario] = useState<"cliente" | "agente">("cliente")
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault()
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-    // Simulação de login
-    if (tipoUsuario === "cliente") {
-      router.push("/cliente/dashboard")
-    } else {
-      router.push("/agente/dashboard")
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const response = await fetch("http://localhost:8080/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, senha }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Email ou senha inválidos. Tente novamente.");
+      }
+
+      const data = await response.json();
+      const token = data.token;
+
+      if (token) {
+        localStorage.setItem("authToken", token);
+      } else {
+        throw new Error("Token não recebido do servidor.");
+      }
+      
+      if (tipoUsuario === "cliente") {
+        router.push("/cliente/dashboard");
+      } else {
+        router.push("/agente/dashboard");
+      }
+
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Um erro inesperado ocorreu.");
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -45,58 +81,30 @@ export default function LoginPage() {
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="seu@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
+                <Input id="email" type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
               </div>
-
               <div className="space-y-2">
                 <Label htmlFor="senha">Senha</Label>
-                <Input
-                  id="senha"
-                  type="password"
-                  placeholder="••••••••"
-                  value={senha}
-                  onChange={(e) => setSenha(e.target.value)}
-                  required
-                />
+                <Input id="senha" type="password" placeholder="••••••••" value={senha} onChange={(e) => setSenha(e.target.value)} required />
               </div>
-
               <div className="space-y-2">
                 <Label>Tipo de Usuário</Label>
                 <div className="flex gap-4">
                   <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="tipo"
-                      value="cliente"
-                      checked={tipoUsuario === "cliente"}
-                      onChange={() => setTipoUsuario("cliente")}
-                      className="accent-primary"
-                    />
+                    <input type="radio" name="tipo" value="cliente" checked={tipoUsuario === "cliente"} onChange={() => setTipoUsuario("cliente")} className="accent-primary" />
                     <span>Cliente</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="tipo"
-                      value="agente"
-                      checked={tipoUsuario === "agente"}
-                      onChange={() => setTipoUsuario("agente")}
-                      className="accent-primary"
-                    />
+                    <input type="radio" name="tipo" value="agente" checked={tipoUsuario === "agente"} onChange={() => setTipoUsuario("agente")} className="accent-primary" />
                     <span>Agente</span>
                   </label>
                 </div>
               </div>
-
-              <Button type="submit" className="w-full">
-                Entrar
+              
+              {error && <p className="text-sm text-center text-red-500">{error}</p>}
+              
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? "Entrando..." : "Entrar"}
               </Button>
 
               <div className="text-center text-sm text-muted-foreground">

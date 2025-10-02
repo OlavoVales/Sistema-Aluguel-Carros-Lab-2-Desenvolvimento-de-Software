@@ -2,8 +2,9 @@ package com.alguel.carros.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import com.alguel.carros.aluguel.AluguelRequestDTO;
 import com.alguel.carros.aluguel.AluguelResponseDTO;
 import com.alguel.carros.carro.CarRepository;
 import com.alguel.carros.carro.Carro;
+import com.alguel.carros.usuario.Usuario;
 
 @RestController
 @RequestMapping("aluguel")
@@ -27,27 +29,38 @@ public class AluguelController {
     @Autowired
     private CarRepository carRepository;
 
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
     @PostMapping
     @Transactional
     public AluguelResponseDTO saveAluguel(@RequestBody AluguelRequestDTO data) {
-        Aluguel aluguelData = new Aluguel(data);
-        Aluguel savedAluguel = repository.save(aluguelData);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuarioLogado = (Usuario) authentication.getPrincipal();
 
         Carro carroAlugado = carRepository.findById(data.carroId())
                 .orElseThrow(() -> new RuntimeException("Carro não encontrado!"));
 
-        carroAlugado.setDisponivel(false);
+        Aluguel aluguelData = new Aluguel(data);
+        aluguelData.setUsuario(usuarioLogado);
+        
+        aluguelData.setCarro(carroAlugado); 
+        
+        Aluguel savedAluguel = repository.save(aluguelData);
 
+        carroAlugado.setDisponivel(false);
         carRepository.save(carroAlugado);
         
         return new AluguelResponseDTO(savedAluguel);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
     @GetMapping
-    public List<AluguelResponseDTO> getAll(){
-        List<AluguelResponseDTO> alugueis = repository.findAll().stream().map(AluguelResponseDTO::new).toList();
+    public List<AluguelResponseDTO> getMeusAlugueis(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuarioLogado = (Usuario) authentication.getPrincipal();
+        
+        List<AluguelResponseDTO> alugueis = repository.findByUsuario(usuarioLogado)
+            .stream()
+            .map(AluguelResponseDTO::new)
+            .toList();
+            
         return alugueis;
     }
 }

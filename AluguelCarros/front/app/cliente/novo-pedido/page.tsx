@@ -37,6 +37,14 @@ export default function NovoPedido() {
     setError(null)
 
     const carroId = searchParams.get('carroId')
+    const token = localStorage.getItem("authToken");
+
+    if (!token) {
+        setError("Sessão expirada. Por favor, faça login novamente.");
+        setIsSubmitting(false);
+        router.push("/login");
+        return;
+    }
 
     if (!carroId) {
       setError("ID do carro não encontrado na URL. Não é possível continuar.")
@@ -63,6 +71,7 @@ export default function NovoPedido() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(payload),
       })
@@ -72,7 +81,7 @@ export default function NovoPedido() {
       }
 
       alert("Pedido de aluguel enviado com sucesso!")
-      router.push("/cliente/dashboard")
+      router.push("/cliente/pedidos")
 
     } catch (err) {
       if (err instanceof Error) {
@@ -93,7 +102,7 @@ export default function NovoPedido() {
       [name]: type === "checkbox" ? checked : value,
     })
   }
-
+  
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b bg-card">
@@ -121,11 +130,6 @@ export default function NovoPedido() {
 
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="max-w-3xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold mb-2">Novo Pedido de Aluguel</h2>
-            <p className="text-muted-foreground">Preencha os dados para solicitar o aluguel</p>
-          </div>
-
           <Card>
             <CardHeader>
               <CardTitle>Informações do Aluguel</CardTitle>
@@ -133,7 +137,7 @@ export default function NovoPedido() {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
+                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="dataInicio">Data de Início</Label>
                     <Input id="dataInicio" name="dataInicio" type="date" value={formData.dataInicio} onChange={handleChange} required />
@@ -151,7 +155,6 @@ export default function NovoPedido() {
                   <Label htmlFor="localDevolucao">Local de Devolução</Label>
                   <Input id="localDevolucao" name="localDevolucao" placeholder="Endereço completo" value={formData.localDevolucao} onChange={handleChange} required />
                 </div>
-
                 <div className="border-t pt-6">
                   <h3 className="text-lg font-semibold mb-4">Informações Financeiras</h3>
                   <p className="text-sm text-muted-foreground mb-4">
@@ -168,7 +171,7 @@ export default function NovoPedido() {
                         <Input id="rendimentoEmpregador1" name="rendimentoEmpregador1" type="number" placeholder="0.00" value={formData.rendimentoEmpregador1} onChange={handleChange} required />
                       </div>
                     </div>
-                    <div className="grid md:grid-cols-2 gap-4">
+                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="empregador2">Empregador 2 (opcional)</Label>
                         <Input id="empregador2" name="empregador2" placeholder="Nome da empresa" value={formData.empregador2} onChange={handleChange} />
@@ -190,16 +193,13 @@ export default function NovoPedido() {
                     </div>
                   </div>
                 </div>
-
                 <div className="flex items-center gap-2">
                   <input type="checkbox" id="precisaCredito" name="precisaCredito" checked={formData.precisaCredito} onChange={handleChange} className="accent-primary" />
                   <Label htmlFor="precisaCredito" className="cursor-pointer">
                     Preciso de crédito/financiamento para este aluguel
                   </Label>
                 </div>
-
                 {error && <p className="text-center text-sm text-red-500">{error}</p>}
-
                 <div className="flex gap-4">
                   <Button type="submit" className="flex-1" disabled={isSubmitting}>
                     {isSubmitting ? "Enviando..." : "Enviar Pedido"}

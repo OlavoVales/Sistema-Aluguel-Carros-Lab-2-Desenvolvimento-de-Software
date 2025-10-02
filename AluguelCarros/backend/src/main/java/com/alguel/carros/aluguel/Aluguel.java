@@ -1,19 +1,25 @@
 package com.alguel.carros.aluguel;
 
-import jakarta.annotation.Generated;
+import com.alguel.carros.carro.Carro;
+import com.alguel.carros.usuario.Usuario;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name = "aluguel")
 @Entity(name = "aluguel")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -21,6 +27,14 @@ public class Aluguel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @ManyToOne
+    private Usuario usuario;
+    
+    @ManyToOne
+    @JoinColumn(name = "carro_id")
+    private Carro carro; 
+    
     private String dataInicio;
     private String dataFim;
     private String localRetirada;
@@ -31,7 +45,6 @@ public class Aluguel {
     private Double rendimentoEmpregador2;
     private String empregador3;
     private Double rendimentoEmpregador3;
-    private Long carroId;
 
     public Aluguel(AluguelRequestDTO data) {
         this.dataInicio = data.dataInicio();
@@ -44,6 +57,5 @@ public class Aluguel {
         this.rendimentoEmpregador2 = data.rendimentoEmpregador2();
         this.empregador3 = data.empregador3();
         this.rendimentoEmpregador3 = data.rendimentoEmpregador3();
-        this.carroId = data.carroId();
     }
 }
