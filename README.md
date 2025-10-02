@@ -1,21 +1,42 @@
 # 🚗 Sistema de Aluguel de Carros
 
-## 📌 Descrição do Projeto
+![GitHub repo size](https://img.shields.io/github/repo-size/OlavoVales/Sistema-Aluguel-Carros-Lab-2-Desenvolvimento-de-Software)
+![GitHub contributors](https://img.shields.io/github/contributors/OlavoVales/Sistema-Aluguel-Carros-Lab-2-Desenvolvimento-de-Software)
+![GitHub last commit](https://img.shields.io/github/last-commit/OlavoVales/Sistema-Aluguel-Carros-Lab-2-Desenvolvimento-de-Software)
+![GitHub issues](https://img.shields.io/github/issues/OlavoVales/Sistema-Aluguel-Carros-Lab-2-Desenvolvimento-de-Software)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/OlavoVales/Sistema-Aluguel-Carros-Lab-2-Desenvolvimento-de-Software)
 
-Este projeto faz parte da disciplina Laboratório de Desenvolvimento de Software e tem como objetivo o desenvolvimento de um Sistema de Aluguel de Carros, que permitirá a gestão de pedidos de aluguel de veículos através da internet.
+---
 
-## 👤 Integrantes
+## 📝 Descrição do Projeto
 
-Fernanda Soares Oliveira Cunha
+Este projeto foi desenvolvido como parte da disciplina **Laboratório de Desenvolvimento de Software (Lab 2)**.  
+Trata-se de um **Sistema de Aluguel de Carros**, que permite:
 
-Gabriel Reis Lebron de Oliveira
+- Cadastro e autenticação de usuários  
+- Consulta de catálogo de automóveis disponíveis  
+- Solicitação de aluguel de veículos  
+- Acompanhamento de pedidos realizados  
+- Painel administrativo para aprovação, rejeição ou cancelamento de pedidos  
 
-Olavo Vales Gomes de Castro Silva
+---
 
-## 🛠️ Tecnologias Utilizadas ##
+## 👥 Integrantes
 
-**Back-end**: Spring Boot 
+- Fernanda Soares Oliveira Cunha  
+- Gabriel Reis Lebron de Oliveira  
+- Olavo Vales Gomes de Castro Silva  
 
-**Front-end**: Next.Js
+---
 
-**Controle de versão**: GitHub e Git
+## 🛠 Tecnologias Utilizadas
+
+- **Backend:** ASP.NET  
+- **Frontend:** Next.js  
+- **Banco de Dados:** (ex.: SQL Server ou SQLite — especifique o usado)  
+- **Controle de Versão:** Git / GitHub  
+
+---
+
+## 📂 Estrutura do Projeto
+
