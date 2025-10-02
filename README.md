@@ -31,18 +31,24 @@ Trata-se de um **Sistema de Aluguel de Carros**, que permite:
 
 ## 🛠 Tecnologias Utilizadas
 
-- **Backend:** ASP.NET  
+- **Backend:** Spring Boot
 - **Frontend:** Next.js  
-- **Banco de Dados:** (ex.: SQL Server ou SQLite — especifique o usado)  
+- **Banco de Dados:** 
 - **Controle de Versão:** Git / GitHub  
 
 ---
 
 ## 📂 Estrutura do Projeto
+
 ├── back/ # Código do backend (ASP.NET)
+
 │ └── lab2-projetosoftware/
+
 ├── front/ # Código do frontend (Next.js)
+
 ├── documentos/ # Documentação de apoio (requisitos, diagramas, etc.)
+
 ├── .gitignore
+
 └── README.md
 
