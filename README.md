@@ -190,7 +190,7 @@ spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.properties.hibernate.format_sql=true
 
-# Chave secreta para a assinatura do Token JWT (gere uma chave segura)
+### Chave secreta para a assinatura do Token JWT (gere uma chave segura)
 api.security.token.secret=SUA_CHAVE_SECRETA_LONGA_E_SEGURA_AQUI
 
 ### 4. Configurar o Frontend (Next.js)
