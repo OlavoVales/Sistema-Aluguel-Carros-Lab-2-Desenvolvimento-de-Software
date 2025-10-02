@@ -136,3 +136,71 @@ sistema-aluguel-carros/
 ├── next.config.mjs # Arquivo de configuração do Next.js
 └── package.json # Dependências e scripts do frontend
 ```
+---
+
+⚙️ Configuração do Ambiente
+1. Clonar o Repositório
+git clone https://github.com/OlavoVales/Sistema-Aluguel-Carros-Lab-2-Desenvolvimento-de-Software.git
+cd Sistema-Aluguel-Carros-Lab-2-Desenvolvimento-de-Software
+
+2. Configurar o Banco de Dados (Supabase)
+
+O projeto utiliza PostgreSQL hospedado no Supabase.
+Crie as tabelas necessárias (usuarios, carros, aluguel) e relacione-as de acordo com o desenvolvimento.
+
+3. Configurar o Backend (Spring Boot)
+
+Navegue até a pasta do backend:
+
+cd backend
+
+
+Vá para src/main/resources/.
+
+Copie application.properties.example e renomeie para application.properties.
+
+Configure suas credenciais do Supabase:
+
+# URL de conexão com o banco
+spring.datasource.url=jdbc:postgresql://SEU_HOST_DO_SUPABASE:5432/postgres
+
+# Usuário e senha
+spring.datasource.username=postgres
+spring.datasource.password=SUA_SENHA
+
+# JPA / Hibernate
+spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+
+# JWT
+api.security.token.secret=SUA_CHAVE_SECRETA_AQUI
+
+4. Configurar o Frontend (Next.js)
+
+Navegue até a pasta do frontend:
+
+cd front
+
+
+Crie um arquivo .env.local na raiz e adicione:
+
+NEXT_PUBLIC_API_URL=http://localhost:8080
+
+🚀 Como Rodar o Projeto
+Iniciar o Backend
+cd backend
+mvn clean install
+mvn spring-boot:run
+
+
+➡️ Servidor rodando em: http://localhost:8080
+
+Iniciar o Frontend
+cd front
+npm install
+npm run dev
+
+
+➡️ Aplicação rodando em: http://localhost:3000
