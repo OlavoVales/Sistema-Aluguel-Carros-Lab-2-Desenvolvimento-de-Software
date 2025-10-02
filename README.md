@@ -39,4 +39,10 @@ Trata-se de um **Sistema de Aluguel de Carros**, que permite:
 ---
 
 ## 📂 Estrutura do Projeto
+├── back/ # Código do backend (ASP.NET)
+│ └── lab2-projetosoftware/
+├── front/ # Código do frontend (Next.js)
+├── documentos/ # Documentação de apoio (requisitos, diagramas, etc.)
+├── .gitignore
+└── README.md
 
