@@ -14,8 +14,9 @@ Olavo Vales Gomes de Castro Silva
 
 ## 🛠️ Tecnologias Utilizadas ##
 
-**Back-end**: Asp.NET 
+**Back-end**: Spring Boot
 
 **Front-end**: Next.Js
 
 **Controle de versão**: GitHub e Git
+
