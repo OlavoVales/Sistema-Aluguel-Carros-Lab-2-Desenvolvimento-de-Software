@@ -138,69 +138,103 @@ sistema-aluguel-carros/
 ```
 ---
 
-⚙️ Configuração do Ambiente
-1. Clonar o Repositório
-git clone https://github.com/OlavoVales/Sistema-Aluguel-Carros-Lab-2-Desenvolvimento-de-Software.git
-cd Sistema-Aluguel-Carros-Lab-2-Desenvolvimento-de-Software
+## 📋 Pré-requisitos
+Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
-2. Configurar o Banco de Dados (Supabase)
+- Git  
+- JDK 17 ou superior  
+- Node.js v18 ou superior  
+- Maven (geralmente já vem integrado em IDEs como IntelliJ e VS Code)  
+- Um editor de código de sua preferência (ex: VS Code, IntelliJ IDEA)  
 
-O projeto utiliza PostgreSQL hospedado no Supabase.
-Crie as tabelas necessárias (usuarios, carros, aluguel) e relacione-as de acordo com o desenvolvimento.
+---
 
-3. Configurar o Backend (Spring Boot)
+## ⚙ Configuração do Ambiente
+Siga os passos abaixo para configurar o ambiente de desenvolvimento.
 
-Navegue até a pasta do backend:
+### 1. Clonar o Repositório
+```bash
+git clone https://SEU-LINK-DO-REPOSITORIO-AQUI.git
+cd NOME-DA-PASTA-DO-PROJETO
+```
 
-cd backend
+### 2. Configurar o Banco de Dados (Supabase)
 
+Este projeto espera que as tabelas usuarios, carros e aluguel já existam no seu banco de dados Supabase.
+Certifique-se de que as colunas e os relacionamentos foram criados conforme o desenvolvimento.
 
-Vá para src/main/resources/.
+### 3. Configurar o Backend (Spring Boot)
 
-Copie application.properties.example e renomeie para application.properties.
+O backend precisa das credenciais para se conectar ao seu banco de dados.
 
-Configure suas credenciais do Supabase:
+Navegue até a pasta do backend (ex: backend/ ou aluguel-carros/).
 
-# URL de conexão com o banco
+Vá para o diretório src/main/resources/.
+
+Crie uma cópia do arquivo application.properties.example e renomeie-a para application.properties.
+
+Abra o novo arquivo e preencha com as suas credenciais do Supabase:
+
+# URL de conexão com o banco de dados PostgreSQL do Supabase
 spring.datasource.url=jdbc:postgresql://SEU_HOST_DO_SUPABASE:5432/postgres
 
-# Usuário e senha
+# Usuário do banco (geralmente 'postgres')
 spring.datasource.username=postgres
-spring.datasource.password=SUA_SENHA
 
-# JPA / Hibernate
+# Senha do seu banco de dados
+spring.datasource.password=SUA_SENHA_DO_BANCO
+
+# Configurações do JPA/Hibernate
 spring.jpa.hibernate.ddl-auto=validate
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.properties.hibernate.format_sql=true
 
-# JWT
-api.security.token.secret=SUA_CHAVE_SECRETA_AQUI
+# Chave secreta para a assinatura do Token JWT (gere uma chave segura)
+api.security.token.secret=SUA_CHAVE_SECRETA_LONGA_E_SEGURA_AQUI
 
-4. Configurar o Frontend (Next.js)
+### 4. Configurar o Frontend (Next.js)
 
-Navegue até a pasta do frontend:
+O frontend precisa saber a URL do seu backend.
 
-cd front
+Navegue até a pasta do frontend (ex: frontend/).
 
+Crie um arquivo chamado .env.local na raiz desta pasta.
 
-Crie um arquivo .env.local na raiz e adicione:
-
+Adicione a seguinte linha ao arquivo:
+```bash
 NEXT_PUBLIC_API_URL=http://localhost:8080
+```
 
-🚀 Como Rodar o Projeto
-Iniciar o Backend
-cd backend
+### 🚀 Como Rodar o Projeto
+
+Para rodar a aplicação, você precisará iniciar o backend e o frontend em dois terminais separados.
+
+Iniciar o Backend (Spring Boot)
+
+Abra um terminal e navegue até a pasta do backend.
+```bash
 mvn clean install
+```
+Inicie o servidor:
+```bash
 mvn spring-boot:run
+```
+➡️ O servidor backend estará rodando em http://localhost:8080
 
 
-➡️ Servidor rodando em: http://localhost:8080
+# Iniciar o Frontend (Next.js)
 
-Iniciar o Frontend
-cd front
+Abra um novo terminal e navegue até a pasta do frontend.
+
+Instale as dependências do projeto:
+```bash
 npm install
+```
+Inicie o servidor de desenvolvimento:
+```bash
 npm run dev
+```
+➡️ A aplicação frontend estará acessível em http://localhost:3000
 
-
-➡️ Aplicação rodando em: http://localhost:3000
+Agora, basta abrir o navegador em http://localhost:3000 para usar o sistema 🚀
