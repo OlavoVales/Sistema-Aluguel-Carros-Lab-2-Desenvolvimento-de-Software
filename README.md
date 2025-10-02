@@ -175,16 +175,16 @@ Crie uma cópia do arquivo application.properties.example e renomeie-a para appl
 
 Abra o novo arquivo e preencha com as suas credenciais do Supabase:
 
-# URL de conexão com o banco de dados PostgreSQL do Supabase
+## URL de conexão com o banco de dados PostgreSQL do Supabase
 spring.datasource.url=jdbc:postgresql://SEU_HOST_DO_SUPABASE:5432/postgres
 
-# Usuário do banco (geralmente 'postgres')
+## Usuário do banco (geralmente 'postgres')
 spring.datasource.username=postgres
 
-# Senha do seu banco de dados
+## Senha do seu banco de dados
 spring.datasource.password=SUA_SENHA_DO_BANCO
 
-# Configurações do JPA/Hibernate
+## Configurações do JPA/Hibernate
 spring.jpa.hibernate.ddl-auto=validate
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
@@ -223,7 +223,7 @@ mvn spring-boot:run
 ➡️ O servidor backend estará rodando em http://localhost:8080
 
 
-# Iniciar o Frontend (Next.js)
+## Iniciar o Frontend (Next.js)
 
 Abra um novo terminal e navegue até a pasta do frontend.
 
