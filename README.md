@@ -60,78 +60,79 @@ Trata-se de um **Sistema de Aluguel de Carros**, que permite:
 
 ## 📂 Estrutura do Projeto
 
+```bash
 sistema-aluguel-carros/
 ├── backend/
-│   ├── .mvn/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/aluguel/carros/  # Corrigido de "alquel" para "aluguel"
-│   │   │   │       ├── carro/
-│   │   │   │       │   ├── Carro.java           # Entidade (Model)
-│   │   │   │       │   ├── CarroRepository.java # Interface JPA
-│   │   │   │       │   ├── CarroService.java    # Regras de negócio
-│   │   │   │       │   └── CarroDTO.java        # Objeto de Transferência de Dados
-│   │   │   │       │
-│   │   │   │       ├── usuario/
-│   │   │   │       │   ├── Usuario.java
-│   │   │   │       │   ├── UsuarioRepository.java
-│   │   │   │       │   ├── UsuarioService.java
-│   │   │   │       │   └── UsuarioDTO.java
-│   │   │   │       │
-│   │   │   │       ├── pedido/
-│   │   │   │       │   ├── Pedido.java
-│   │   │   │       │   ├── PedidoRepository.java
-│   │   │   │       │   ├── PedidoService.java
-│   │   │   │       │   └── PedidoDTO.java
-│   │   │   │       │
-│   │   │   │       ├── controller/
-│   │   │   │       │   ├── CarroController.java   # Endpoints para /api/carros
-│   │   │   │       │   ├── UsuarioController.java # Endpoints para /api/usuarios
-│   │   │   │       │   └── PedidoController.java  # Endpoints para /api/pedidos
-│   │   │   │       │
-│   │   │   │       ├── security/
-│   │   │   │       │   ├── SecurityConfig.java    # Configurações de segurança (rotas, cors)
-│   │   │   │       │   └── TokenService.java      # Geração/Validação de Tokens JWT
-│   │   │   │       │
-│   │   │   │       └── CarrosApplication.java     # Classe principal da aplicação
-│   │   │   │
-│   │   │   └── resources/
-│   │   │       ├── application.properties       # Configurações do Spring (banco, etc.)
-│   │   │       └── data.sql                     # Opcional: Carga inicial de dados
-│   │   │
-│   │   └── test/                             # Testes unitários e de integração
-│   │       └── java/com/aluguel/carros/
-│   │
-│   ├── .gitattributes
-│   ├── .gitignore
-│   ├── mvnw
-│   ├── mvnw.cmd
-│   └── pom.xml                             # Dependências e build do projeto Maven
+│ ├── .mvn/
+│ ├── src/
+│ │ ├── main/
+│ │ │ ├── java/
+│ │ │ │ └── com/aluguel/carros/ # Corrigido de "alquel" para "aluguel"
+│ │ │ │ ├── carro/
+│ │ │ │ │ ├── Carro.java # Entidade (Model)
+│ │ │ │ │ ├── CarroRepository.java # Interface JPA
+│ │ │ │ │ ├── CarroService.java # Regras de negócio
+│ │ │ │ │ └── CarroDTO.java # Objeto de Transferência de Dados
+│ │ │ │ │
+│ │ │ │ ├── usuario/
+│ │ │ │ │ ├── Usuario.java
+│ │ │ │ │ ├── UsuarioRepository.java
+│ │ │ │ │ ├── UsuarioService.java
+│ │ │ │ │ └── UsuarioDTO.java
+│ │ │ │ │
+│ │ │ │ ├── pedido/
+│ │ │ │ │ ├── Pedido.java
+│ │ │ │ │ ├── PedidoRepository.java
+│ │ │ │ │ ├── PedidoService.java
+│ │ │ │ │ └── PedidoDTO.java
+│ │ │ │ │
+│ │ │ │ ├── controller/
+│ │ │ │ │ ├── CarroController.java # Endpoints para /api/carros
+│ │ │ │ │ ├── UsuarioController.java # Endpoints para /api/usuarios
+│ │ │ │ │ └── PedidoController.java # Endpoints para /api/pedidos
+│ │ │ │ │
+│ │ │ │ ├── security/
+│ │ │ │ │ ├── SecurityConfig.java # Configurações de segurança (rotas, cors)
+│ │ │ │ │ └── TokenService.java # Geração/Validação de Tokens JWT
+│ │ │ │ │
+│ │ │ │ └── CarrosApplication.java # Classe principal da aplicação
+│ │ │ │
+│ │ │ └── resources/
+│ │ │ ├── application.properties # Configurações do Spring (banco, etc.)
+│ │ │ └── data.sql # Opcional: Carga inicial de dados
+│ │ │
+│ │ └── test/ # Testes unitários e de integração
+│ │ └── java/com/aluguel/carros/
+│ │
+│ ├── .gitattributes
+│ ├── .gitignore
+│ ├── mvnw
+│ ├── mvnw.cmd
+│ └── pom.xml # Dependências e build do projeto Maven
 │
 └── front/
-    ├── app/                                  # Diretório principal do App Router
-    │   ├── agente/
-    │   │   └── page.tsx                      # Página da área do Agente
-    │   ├── cadastro/
-    │   │   └── page.tsx                      # Página de cadastro de usuário
-    │   ├── cliente/
-    │   │   └── page.tsx                      # Página da área do Cliente
-    │   ├── login/
-    │   │   └── page.tsx                      # Página de login
-    │   │
-    │   ├── globals.css                       # Estilos globais
-    │   ├── layout.tsx                        # Layout principal da aplicação
-    │   └── page.tsx                          # Página inicial (Home)
-    │
-    ├── components/                           # Componentes React reutilizáveis (Button, Input, Card)
-    ├── hooks/                                # Hooks customizados (ex: useAuth, useFetch)
-    ├── lib/                                  # Funções utilitárias, instâncias de API (axios)
-    ├── public/                               # Arquivos estáticos (imagens, fontes)
-    ├── styles/                               # Arquivos de estilo adicionais
-    │
-    ├── .gitignore
-    ├── components.json                       # Configuração para bibliotecas como a shadcn/ui
-    ├── next.config.mjs                       # Arquivo de configuração do Next.js
-    └── package.json                          # Dependências e scripts do frontend
-
+├── app/ # Diretório principal do App Router
+│ ├── agente/
+│ │ └── page.tsx # Página da área do Agente
+│ ├── cadastro/
+│ │ └── page.tsx # Página de cadastro de usuário
+│ ├── cliente/
+│ │ └── page.tsx # Página da área do Cliente
+│ ├── login/
+│ │ └── page.tsx # Página de login
+│ │
+│ ├── globals.css # Estilos globais
+│ ├── layout.tsx # Layout principal da aplicação
+│ └── page.tsx # Página inicial (Home)
+│
+├── components/ # Componentes React reutilizáveis (Button, Input, Card)
+├── hooks/ # Hooks customizados (ex: useAuth, useFetch)
+├── lib/ # Funções utilitárias, instâncias de API (axios)
+├── public/ # Arquivos estáticos (imagens, fontes)
+├── styles/ # Arquivos de estilo adicionais
+│
+├── .gitignore
+├── components.json # Configuração para bibliotecas como a shadcn/ui
+├── next.config.mjs # Arquivo de configuração do Next.js
+└── package.json # Dependências e scripts do frontend
+```
