@@ -36,19 +36,22 @@ Trata-se de um **Sistema de Aluguel de Carros**, que permite:
 - **Banco de Dados:** 
 - **Controle de Versão:** Git / GitHub  
 
+
 ---
 
-## 📂 Estrutura do Projeto
+## 🏗️ Arquitetura e Tecnologias
 
-├── back/ # Código do backend (ASP.NET)
+- ☕ **Java 21**, Spring Boot **3.5.5**  
+- 📦 Spring Dependency Management   
+- 🗄️ Spring Data JPA (H2 por padrão; PostgreSQL opcional)  
+- 🔐 Spring Security (login/sessão)  
+- 📝 Bean Validation (jakarta-validation)  
+- 🧰 Lombok (anotações)  
 
-│ └── lab2-projetosoftware/
+---
 
-├── front/ # Código do frontend (Next.js)
+## ☕ Linguagem e Build
 
-├── documentos/ # Documentação de apoio (requisitos, diagramas, etc.)
-
-├── .gitignore
-
-└── README.md
-
+- Java 17
+- Maven
+- Spring Boot 3.5.6
